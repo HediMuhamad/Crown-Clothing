@@ -1,42 +1,9 @@
 import React from 'react';
 import './homepage.styles.scss';
-
+import DirectoryMenu from './components/directory-menu/directory-menu.component';
 const HomePage = () =>{
     return(
-        <div className='home-page'>
-            <div className='directory-menu'>
-                <div className='menu-item'>
-                    <div className='info-container'>
-                        <h1 className='title'>HATS</h1>
-                        <span className='subtitle'>SHOP NOW</span>
-                    </div>
-                </div>
-                <div className='menu-item'>
-                    <div className='info-container'>
-                        <h1 className='title'>JACKETS</h1>
-                        <span className='subtitle'>SHOP NOW</span>
-                    </div>
-                </div>
-                <div className='menu-item'>
-                    <div className='info-container'>
-                        <h1 className='title'>SNEAKERS</h1>
-                        <span className='subtitle'>SHOP NOW</span>
-                    </div>
-                </div>
-                <div className='menu-item'>
-                    <div className='info-container'>
-                        <h1 className='title'>WOMENS</h1>
-                        <span className='subtitle'>SHOP NOW</span>
-                    </div>
-                </div>
-                <div className='menu-item'>
-                    <div className='info-container'>
-                        <h1 className='title'>MENS</h1>
-                        <span className='subtitle'>SHOP NOW</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <DirectoryMenu/>
     )
 }
 
