@@ -1,8 +1,16 @@
+*{
+  scrollbar-width: 0;
+  &::-webkit-scrollbar{
+    width: 0;
+  }
+}
+
 body {
   margin: 0;
   font-family: 'Open Sans Condensed', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding: 20px 60px;
 }
 
 code {

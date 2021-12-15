@@ -3,7 +3,6 @@ import './collection-preview.styles.scss'
 import CollectionItem from "../collection-item/collection-item.component";
 
 const CollectionPreview = (props) => {
-    console.log(props);
     const {items} = props;
     return(
         <div className="collection-preview">
