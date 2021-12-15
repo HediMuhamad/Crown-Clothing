@@ -10,6 +10,7 @@ const Header = ({match, history}) => (
         <div className='options'>
             <Link className='option' to='/shop'>SHOP</Link>
             <Link className='option' to='/contact'>CONTACT</Link>
+            <Link className='option' to='/account'>SIGN IN</Link>
         </div>
     </div>
     )
