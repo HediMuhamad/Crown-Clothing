@@ -1,0 +1,67 @@
+.collection-item {
+  width: 22%;
+  display: flex;
+  flex-direction: column;
+  height: 350px;
+  align-items: center;
+
+  .image {
+    width: 100%;
+    height: 95%;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 5px;
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    transition: opacity 0.25s ease-in-out;
+
+    &:hover{
+      opacity: 0.9;
+    }
+
+    &:hover .add-to-cart-btn{
+      opacity: 0.8;
+      pointer-events: all;
+    }
+
+    .add-to-cart-btn{
+      top: 77.5%;
+      width: 80%;
+      aspect-ratio: 5;
+      position: absolute;
+      outline: none;
+      border: none;
+      background-color: white;
+      font-size: 1.2em;
+      opacity: 0;
+      font-family: 'Open Sans Condensed', sans-serif;
+      pointer-events: none;
+      transition: opacity 0.25s ease-in-out;
+    
+      &:hover{
+        opacity: 1 !important;
+      }
+      
+    }
+
+  }
+
+  .collection-footer {
+    width: 100%;
+    height: 5%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+
+    .name {
+      width: 90%;
+      margin-bottom: 15px;
+    }
+
+    .price {
+      width: 10%;
+    }
+  }
+}
