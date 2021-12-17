@@ -2,12 +2,13 @@ import React from 'react';
 import './sign-in.styles.scss'
 import CustomButton from '../custom-button/custom-button.component';
 import FormInput from '../form-input/form-input.component';
+import {signInWithGoogle} from '../../firebase/sign-in'
 
 class SignIn extends React.Component {
     
     constructor(){
         super()
-        this.state = {email: '', password: ''};
+        this.state = {email: '', password: '', buttonsDisabled:false};
     }
 
     handleChange = event => {
@@ -20,6 +21,12 @@ class SignIn extends React.Component {
     handleSubmit = event => {
         event.preventDefault();
         this.setState({});
+    }
+
+    handleLogin = async (event) => {
+        this.setState({buttonsDisabled:true})
+        await signInWithGoogle();
+        this.setState({buttonsDisabled:false})
     }
 
 
@@ -46,8 +53,18 @@ class SignIn extends React.Component {
                         required
                     ></FormInput>
                     <div className='button-group'>
-                        <CustomButton buttonText={"SIGN IN"} type="submit" />
-                        <CustomButton buttonText={"SIGN IN WITH GOOGLE"} />
+                        <CustomButton
+                            type='submit'
+                            classlist={this.state.buttonsDisabled?'disabled':null}
+                            onClick={(event)=>this.handleLogin(event)}
+                            key={'email-signin'}
+                        >SIGN IN</CustomButton>
+                        <CustomButton
+                            type='submit'
+                            classlist={this.state.buttonsDisabled?'disabled':null}
+                            onClick={(event)=>this.handleLogin(event)}
+                            key={'google-signin'}
+                        >SIGN IN WITH GOOGLE</CustomButton>
                     </div>
                 </form>
             </div>

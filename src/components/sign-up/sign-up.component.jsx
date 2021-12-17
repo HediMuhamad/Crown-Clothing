@@ -17,7 +17,7 @@ class SignUp extends React.Component{
 
     handlePasswordConfirmation = event => {
         this.handleChange(event);
-        this.setState({passwordConfirmed:this.state.password==event.target.value ? true : false});
+        this.setState({passwordConfirmed:this.state.password===event.target.value});
     }
 
     render(){
@@ -58,7 +58,7 @@ class SignUp extends React.Component{
                         value={this.state.confirmPassword}
                         required
                     />
-                    <CustomButton buttonText={'SIGN UP'} classList={'full-width'} type="submit"/>
+                    <CustomButton classlist={'full-width'} type="submit">SIGN UP</CustomButton>
                 </form>
             </div>
         )
