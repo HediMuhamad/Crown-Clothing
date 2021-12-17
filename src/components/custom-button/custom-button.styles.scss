@@ -1,8 +1,3 @@
-@mixin onHover {
-  --primary-color: white;
-  --secondary-color: black;
-}
-
 .custom-button {
   --primary-color: black;
   --secondary-color: white;
@@ -22,7 +17,18 @@
   cursor: pointer;
 
   &:not(.disabled):hover, &:not(.disabled):focus {
-    @include onHover()
+    --primary-color: white;
+    --secondary-color: black;
+  }
+}
+
+.google-btn{
+  --primary-color: #4285F4;
+  --secondary-color: white;
+
+  &:not(.disabled):hover, &:not(.disabled):focus {
+    --primary-color: white;
+    --secondary-color: #4285F4;
   }
 }
 
