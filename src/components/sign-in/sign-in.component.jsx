@@ -2,7 +2,7 @@ import React from 'react';
 import './sign-in.styles.scss'
 import CustomButton from '../custom-button/custom-button.component';
 import FormInput from '../form-input/form-input.component';
-import {signInWithGoogle} from '../../firebase/sign-in'
+import {authInWithGoogle} from '../../firebase/authentication'
 
 class SignIn extends React.Component {
     
@@ -11,19 +11,19 @@ class SignIn extends React.Component {
         this.state = {email: '', password: '', buttonsDisabled:false};
     }
 
-    handleChange = event => {
+    textBoxChangeHandler = event => {
         const {name, value} = event.target;
         this.setState({[name]:value});
     }
 
-    handleSubmit = event => {
+    submitHandler = event => {
         event.preventDefault();
         this.setState({});
     }
 
-    handleLogin = async (event) => {
+    googleAuthHandler = async (event) => {
         this.setState({buttonsDisabled:true})
-        await signInWithGoogle();
+        await authInWithGoogle();
         this.setState({buttonsDisabled:false})
     }
 
@@ -39,7 +39,7 @@ class SignIn extends React.Component {
                         type="email"
                         name="email"
                         value={this.state.email}
-                        onChange={this.handleChange}
+                        onChange={this.textBoxChangeHandler}
                         required
                     ></FormInput>
                     <FormInput
@@ -47,19 +47,19 @@ class SignIn extends React.Component {
                         type="password"
                         name="password"
                         value={this.state.password}
-                        onChange={this.handleChange}
+                        onChange={this.textBoxChangeHandler}
                         required
                     ></FormInput>
                     <div className='button-group'>
                         <CustomButton
                             type='submit'
                             classlist={this.state.buttonsDisabled?'disabled':null}
-                            onClick={(event)=>this.handleLogin(event)}
+                            onClick={(event)=>this.googleAuthHandler(event)}
                         >SIGN IN</CustomButton>
                         <CustomButton
                             type='submit'
                             classlist={`google-btn ${this.state.buttonsDisabled?'disabled':null}`}
-                            onClick={(event)=>this.handleLogin(event)}
+                            onClick={(event)=>this.googleAuthHandler(event)}
                         >SIGN IN WITH GOOGLE</CustomButton>
                     </div>
                 </form>
