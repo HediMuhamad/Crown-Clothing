@@ -2,7 +2,7 @@ import React from 'react';
 import './sign-in.styles.scss'
 import CustomButton from '../custom-button/custom-button.component';
 import FormInput from '../form-input/form-input.component';
-import {authInWithGoogle} from '../../firebase/authentication'
+import {authInWithEmailAndPassword, authInWithGoogle} from '../../firebase/authentication'
 
 class SignIn extends React.Component {
     
@@ -11,14 +11,14 @@ class SignIn extends React.Component {
         this.state = {email: '', password: '', buttonsDisabled:false};
     }
 
-    textBoxChangeHandler = event => {
+    textFieldChangeHandler = event => {
         const {name, value} = event.target;
         this.setState({[name]:value});
     }
 
-    submitHandler = event => {
+    handleSubmit = event => {
         event.preventDefault();
-        this.setState({});
+        authInWithEmailAndPassword(this.state.email, this.state.password);
     }
 
     googleAuthHandler = async (event) => {
@@ -39,7 +39,7 @@ class SignIn extends React.Component {
                         type="email"
                         name="email"
                         value={this.state.email}
-                        onChange={this.textBoxChangeHandler}
+                        onChange={this.textFieldChangeHandler}
                         required
                     ></FormInput>
                     <FormInput
@@ -47,14 +47,14 @@ class SignIn extends React.Component {
                         type="password"
                         name="password"
                         value={this.state.password}
-                        onChange={this.textBoxChangeHandler}
+                        onChange={this.textFieldChangeHandler}
                         required
                     ></FormInput>
                     <div className='button-group'>
                         <CustomButton
                             type='submit'
                             classlist={this.state.buttonsDisabled?'disabled':null}
-                            onClick={(event)=>this.googleAuthHandler(event)}
+                            onClick={this.handleSubmit}
                         >SIGN IN</CustomButton>
                         <CustomButton
                             type='submit'

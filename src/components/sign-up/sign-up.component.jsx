@@ -2,6 +2,7 @@ import React from 'react';
 import CustomButton from '../custom-button/custom-button.component';
 import FormInput from '../form-input/form-input.component';
 import './sign-up.styles.scss'
+import { authUpWithEmailAndPassword } from '../../firebase/authentication';
 
 class SignUp extends React.Component{
     
@@ -10,13 +11,21 @@ class SignUp extends React.Component{
         this.state={displayName: '', email: '', password: '', confirmPassword: '', passwordConfirmed: false};
     }
 
-    handleChange = event => {
+    handleSubmit = async event => {
+        const {displayName, email, password, passwordConfirmed} = this.state;
+        event.preventDefault();
+        if(passwordConfirmed){
+            authUpWithEmailAndPassword(displayName, email, password);
+        }
+    }
+
+    textFieldChangeHandler = event => {
         const {name, value} = event.target;
         this.setState({[name]:value})
     }
 
     handlePasswordConfirmation = event => {
-        this.handleChange(event);
+        this.textFieldChangeHandler(event);
         this.setState({passwordConfirmed:this.state.password===event.target.value});
     }
 
@@ -30,7 +39,7 @@ class SignUp extends React.Component{
                         label='Display Name'
                         type="text"
                         name="displayName"
-                        onChange={this.handleChange}
+                        onChange={this.textFieldChangeHandler}
                         value={this.state.displayName}
                         required
                     />
@@ -38,7 +47,7 @@ class SignUp extends React.Component{
                         label='Email'
                         type="email"
                         name="email"
-                        onChange={this.handleChange}
+                        onChange={this.textFieldChangeHandler}
                         value={this.state.email}
                         required
                     />
@@ -46,7 +55,7 @@ class SignUp extends React.Component{
                         label='Password'
                         type="password"
                         name="password"
-                        onChange={this.handleChange}
+                        onChange={this.textFieldChangeHandler}
                         value={this.state.password}
                         required
                     />
@@ -58,7 +67,7 @@ class SignUp extends React.Component{
                         value={this.state.confirmPassword}
                         required
                     />
-                    <CustomButton classlist={'full-width'} type="submit">SIGN UP</CustomButton>
+                    <CustomButton classlist={'full-width'} type="submit" onClick={this.handleSubmit}>SIGN UP</CustomButton>
                 </form>
             </div>
         )
