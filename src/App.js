@@ -13,24 +13,21 @@ import Account from './pages/account/account.component.jsx'
 /*Firebase */
 import { authChangeHandlingForwarder } from './firebase/authentication';
 import { createUserProfileDocument, onSnapshotHandler } from './firebase/firestore';
+import { connect } from 'react-redux';
+
+/*Reducers Actions */
+import { setCurrentUser } from './redux/user/user-action'
 
 class App extends React.Component {
-
-  constructor(){
-    super();
-
-    this.state={
-      currentUser: null
-    }
-  }
 
   unSubscribeFromAuth = null;
 
   authChangeHandler = async (user) => {
-    this.setState({currentUser:user})
+    const { setCurrentUser } = this.props;
+    setCurrentUser(user)
     if(user){
       const userRef = await createUserProfileDocument(user);
-      onSnapshotHandler(userRef ,snapshot => this.setState({currentUser:{id: userRef.id, ...snapshot.data()}}))
+      onSnapshotHandler(userRef ,snapshot => setCurrentUser({id: userRef.id, ...snapshot.data()}))
     }
   }
 
@@ -45,7 +42,7 @@ class App extends React.Component {
   render(){
     return (
       <div className="App">
-        <Header currentUser={this.state.currentUser} accountHandler={this.accountHandler}/>
+        <Header/>
         <Route exact path={'/'} component={HomePage}/>
         <Route exact path={'/shop'} component={ShopPage} />
         <Route exact path={'/account'} component={Account} />
@@ -54,4 +51,9 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => {
+  return ({
+    setCurrentUser: user => dispatch(setCurrentUser(user))
+})}
+
+export default connect(null, mapDispatchToProps)(App);

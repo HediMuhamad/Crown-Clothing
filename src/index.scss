@@ -1,5 +1,6 @@
-*{
-  scrollbar-width: 0;
+:root{
+  scrollbar-width: none;
+  
   &::-webkit-scrollbar{
     width: 0;
   }
