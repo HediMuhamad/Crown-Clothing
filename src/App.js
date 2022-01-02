@@ -1,10 +1,16 @@
 import React from 'react';
+
+/*Dependencies */
 import { Route } from 'react-router-dom';
+
+/*Components */
 import './App.css';
 import Header from './components/header/header.component.jsx'
 import HomePage from './pages/home-page/homepage.component.jsx'
 import ShopPage from './pages/shop/shoppage.component.jsx'
 import Account from './pages/account/account.component.jsx'
+
+/*Firebase */
 import { authChangeHandlingForwarder } from './firebase/authentication';
 import { createUserProfileDocument, onSnapshotHandler } from './firebase/firestore';
 
