@@ -1,9 +1,17 @@
 .collection-item {
-  width: 22%;
   display: flex;
   flex-direction: column;
-  height: 350px;
+  height: 450px;
+  margin: 0 5%;
   align-items: center;
+
+  &:first-of-type{
+    margin-left: 0;
+  }
+
+  &:last-of-type{
+    margin-right: 0;
+  }
 
   .image {
     width: 100%;
