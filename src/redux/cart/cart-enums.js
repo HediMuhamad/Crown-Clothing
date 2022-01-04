@@ -1,0 +1,3 @@
+export const CartActionTypes = {
+    TOGGLE_CART_HIDDEN_PROPERTY: 'TOGGLE_CART_HIDDEN_PROPERTY' 
+}

@@ -10,10 +10,11 @@ import './header.styles.scss'
 import { ReactComponent as Logo } from '../../logo.svg'
 
 /*Components */
-import { CartIcon } from '../cart-icon/cart-icon.component';
+import CartIcon from '../cart-icon/cart-icon.component';
+import { CartDropdown } from '../cart-dropdown/cart-dropdown.component';
 
 
-const Header = ({currentUser}) => (
+const Header = ({currentUser, isCartDropdownHided}) => (
     <div className='header' >
         <div className='logo-container'><Link to='/' ><Logo/></Link></div>
         <div className='options'>
@@ -21,12 +22,17 @@ const Header = ({currentUser}) => (
             <Link className='option' to='/contact'>CONTACT</Link>
             <Link className='option' to={!currentUser?'/account':''} onClick={authOut}> {currentUser?'SIGN OUT':'SIGN IN'}</Link>
             <CartIcon/>
+            {
+                isCartDropdownHided ? null :
+                <CartDropdown/>
+            }
         </div>
     </div>
     )
 
 const mapStateToProps = state => ({
-    currentUser: state.user.currentUser
+    currentUser: state.user.currentUser,
+    isCartDropdownHided: state.cart.hidden,
 })
 
 export default connect(mapStateToProps)(Header);

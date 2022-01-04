@@ -1,5 +1,5 @@
 import React from 'react';
-import CustomButton from '../custom-button/custom-button.component';
+import {CustomButton} from '../custom-button/custom-button.component';
 import FormInput from '../form-input/form-input.component';
 import './sign-up.styles.scss'
 import { authUpWithEmailAndPassword } from '../../firebase/authentication';
