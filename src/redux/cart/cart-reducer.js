@@ -1,7 +1,9 @@
 import { CartActionTypes } from "./cart-enums";
+import { cartItemHanlder } from "./cart-utils";
 
 const INITIAL_STATE = {
     hidden: true,
+    cartItemsCount: 0,
     cartItems: []
 }
 
@@ -16,16 +18,11 @@ const cartReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 cartItems: cartItemHanlder(state.cartItems, action.payload),
+                cartItemsCount: state.cartItemsCount+1,
             }
         default:
             return state;
     }
-}
-
-const cartItemHanlder = (arr, id) => {
-    const findResult = arr.findIndex((item)=>item.id===id);
-    findResult===-1 ? arr.push({id: id, quantity: 1}) : arr[findResult].quantity=arr[findResult].quantity+1
-    return arr;
 }
 
 export default cartReducer;

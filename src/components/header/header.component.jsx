@@ -11,7 +11,7 @@ import { ReactComponent as Logo } from '../../logo.svg'
 
 /*Components */
 import CartIcon from '../cart-icon/cart-icon.component';
-import { CartDropdown } from '../cart-dropdown/cart-dropdown.component';
+import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 
 
 const Header = ({currentUser, isCartDropdownHided}) => (

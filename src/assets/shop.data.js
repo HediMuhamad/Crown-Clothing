@@ -1,12 +1,18 @@
-/* Used as starting data for ShopPage */
+export const findInStore = (id) => {
+  for (var i=0;i<SHOP_DATA.length;i++) {
+    for (var j=0;j<SHOP_DATA[i].items.length;j++) {
+      if (SHOP_DATA[i].items[j].id===id) {
+        return SHOP_DATA[i].items[j]
+      }
+    }
+  }
+}
 
-const SHOP_DATA = [
-  {
+const SHOP_DATA = [{
     id: 1,
     title: 'Hats',
     routeName: 'hats',
-    items: [
-      {
+    items: [{
         id: 1,
         name: 'Black Beanie',
         // imageUrl: 'https://i.ibb.co/ZYW3VTp/brown-brim.png',
@@ -75,12 +81,11 @@ const SHOP_DATA = [
     id: 2,
     title: 'Sneakers',
     routeName: 'sneakers',
-    items: [
-      {
+    items: [{
         id: 10,
         name: 'Adidas NMD',
         // imageUrl: 'https://i.ibb.co/0s3pdnc/adidas-nmd.png',
-        imageUrl: "/images/shop-img/sneakers/adidas-nmd.png", 
+        imageUrl: "/images/shop-img/sneakers/adidas-nmd.png",
         price: 220
       },
       {
@@ -138,8 +143,7 @@ const SHOP_DATA = [
     id: 3,
     title: 'Jackets',
     routeName: 'jackets',
-    items: [
-      {
+    items: [{
         id: 18,
         name: 'Black Jean Shearling',
         // imageUrl: 'https://i.ibb.co/XzcwL5s/black-shearling.png',
@@ -180,8 +184,7 @@ const SHOP_DATA = [
     id: 4,
     title: 'Womens',
     routeName: 'womens',
-    items: [
-      {
+    items: [{
         id: 23,
         name: 'Pink Sweater',
         // imageUrl: 'https://i.ibb.co/7CQVJNm/blue-tank.png',
@@ -236,8 +239,7 @@ const SHOP_DATA = [
     id: 5,
     title: 'Mens',
     routeName: 'mens',
-    items: [
-      {
+    items: [{
         id: 30,
         name: 'Camo Down Vest',
         // imageUrl: 'https://i.ibb.co/xJS0T3Y/camo-vest.png',
