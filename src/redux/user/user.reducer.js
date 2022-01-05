@@ -1,4 +1,4 @@
-import { UserActionTypes } from './user-enums'
+import { UserActionTypes } from './user.enums'
 
 const INITICAL_STATE = {
     currentUser: null

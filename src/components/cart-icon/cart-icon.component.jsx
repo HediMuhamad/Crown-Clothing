@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { toggleCartHiddenProperty } from '../../redux/cart/cart-action'
-import { selectCartItemsCount } from '../../redux/cart/cart-selectors';
+import { toggleCartHiddenProperty } from '../../redux/cart/cart.action'
+import { selectCartItemsCount } from '../../redux/cart/cart.selectors';
 
 import './cart-icon.styles.scss'
 import { ReactComponent as TheBag } from '../../assets/icons/cart-icon.svg'

@@ -1,4 +1,4 @@
-import { UserActionTypes } from "./user-enums"
+import { UserActionTypes } from "./user.enums"
 
 export const setCurrentUser = (user) => {
     return{

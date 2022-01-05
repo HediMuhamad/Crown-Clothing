@@ -1,13 +1,3 @@
-export const findInStore = (id) => {
-  for (var i=0;i<SHOP_DATA.length;i++) {
-    for (var j=0;j<SHOP_DATA[i].items.length;j++) {
-      if (SHOP_DATA[i].items[j].id===id) {
-        return SHOP_DATA[i].items[j]
-      }
-    }
-  }
-}
-
 const SHOP_DATA = [{
     id: 1,
     title: 'Hats',

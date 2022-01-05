@@ -18,10 +18,10 @@ import { createUserProfileDocument, onSnapshotHandler } from './firebase/firesto
 import { connect } from 'react-redux';
 
 /*Reducers Actions */
-import { setCurrentUser } from './redux/user/user-action'
+import { setCurrentUser } from './redux/user/user.action'
 
 /*Selectors */
-import { selectCurrentUser } from './redux/user/user-selectors'
+import { selectCurrentUser } from './redux/user/user.selectors'
 
 class App extends React.Component {
 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import './checkout-page.styles.scss'
 
-import { selectCartItems, selectCartItemsTotal } from '../../redux/cart/cart-selectors';
+import { selectCartItems, selectCartItemsTotal } from '../../redux/cart/cart.selectors';
 
 import CheckoutItem from '../../components/checkout-item/checkout-item.component'
 

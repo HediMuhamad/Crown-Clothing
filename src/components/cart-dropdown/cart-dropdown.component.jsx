@@ -7,10 +7,10 @@ import './cart-dropdown.styles.scss'
 import { CustomButton } from '../custom-button/custom-button.component'
 import { CartItem } from "../cart-item/cart-item.component";
 
-import { selectCartItems } from "../../redux/cart/cart-selectors";
-import { toggleCartHiddenProperty } from "../../redux/cart/cart-action";
+import { selectCartItems } from "../../redux/cart/cart.selectors";
+import { toggleCartHiddenProperty } from "../../redux/cart/cart.action";
 
-import { findInStore } from "../../assets/shop.data";
+import { findInStore } from '../../redux/shop-data/shop-data.utils';;
 
 const CartDropdown = ({cartItems, history, dispatch}) => (
     <div className="cart-dropdown">

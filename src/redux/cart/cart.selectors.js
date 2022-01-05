@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-import { findInStore } from '../../assets/shop.data';
+import { findInStore } from "../shop-data/shop-data.utils";
 
 const selectCart = state => state.cart
 

@@ -1,5 +1,5 @@
-import { CartActionTypes } from "./cart-enums";
-import { addItemToCartHandler, clearItemFromCartHandler, removeItemFromCartHandler } from "./cart-utils";
+import { CartActionTypes } from "./cart.enums";
+import { addItemToCartHandler, clearItemFromCartHandler, removeItemFromCartHandler } from "./cart.utils";
 
 const INITIAL_STATE = {
     hidden: true,

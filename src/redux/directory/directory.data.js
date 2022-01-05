@@ -1,4 +1,4 @@
-const section = [{
+const DIRECTORY = [{
         title: 'hats',
         imageUrl: '/images/hats.png',
         id: 1,
@@ -32,4 +32,4 @@ const section = [{
     }
 ]
 
-export default section;
+export default DIRECTORY;
