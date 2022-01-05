@@ -1,5 +1,5 @@
 import { CartActionTypes } from "./cart-enums";
-import { addItemToCartHandler } from "./cart-utils";
+import { addItemToCartHandler, clearItemFromCartHandler, removeItemFromCartHandler } from "./cart-utils";
 
 const INITIAL_STATE = {
     hidden: true,
@@ -8,21 +8,31 @@ const INITIAL_STATE = {
 
 const cartReducer = (state = INITIAL_STATE, action) => {
     switch(action.type){
+        
         case CartActionTypes.TOGGLE_CART_HIDDEN_PROPERTY:
             return {
                 ...state,
                 hidden: !state.hidden
             }
+
         case CartActionTypes.ADD_ITEM_TO_CART:
             return {
                 ...state,
                 cartItems: addItemToCartHandler(state.cartItems, action.payload),
             }
+
+        case CartActionTypes.REMOVE_ITEM_FROM_CART:
+            return {
+                ...state,
+                cartItems: removeItemFromCartHandler(state.cartItems, action.payload),
+            }
+
         case CartActionTypes.CLEAR_ITEM_FROM_CART:
             return {
                 ...state,
-                cartItems: state.cartItems.filter((cartItem)=> cartItem.id !== action.payload),
+                cartItems: clearItemFromCartHandler(state.cartItems, action.payload),
             }
+
         default:
             return state;
     }

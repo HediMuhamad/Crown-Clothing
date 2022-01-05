@@ -17,7 +17,7 @@ const CheckoutPage = ({cartItems, totalPrice}) => (
             <div className='header-block'><span>Remove</span></div>
         </div>
         <div className='cart-items-container'>
-            {cartItems.map(cartItem => <CheckoutItem key={cartItem.id} cartItem={cartItem}/>)}
+            {cartItems.map(cartItem => <CheckoutItem key={cartItem.id} {...cartItem} />)} {/*Why ==> {...cartItem} <== and not ==> cartItem = {cartItem} <== ? the first one send data indevedually which the item will be aware in every changes no like the second one which pass it as an array.*/}
         </div>
         <div className='total'><div>Total: ${totalPrice}</div></div>
     </div>

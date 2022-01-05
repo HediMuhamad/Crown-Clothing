@@ -23,9 +23,24 @@
     .name{
         width: 30%;
     }
+
     .quantity{
-        padding-left: 15px;
+        display: flex;
+        padding-left: 3px;
         box-sizing: border-box;
+
+        .value{
+            padding: 0 5px;
+        }
+
+        .arrow{
+            cursor: pointer;
+        }
+
+        *{
+            user-select: none;
+        }
+
     }
 
     .image-container,
