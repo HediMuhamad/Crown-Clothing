@@ -1,14 +1,16 @@
 import React from 'react';
 
+import './App.css';
+
 /*Dependencies */
 import { Redirect, Route } from 'react-router-dom';
 
 /*Components */
-import './App.css';
 import Header from './components/header/header.component.jsx'
 import HomePage from './pages/home-page/home-page.component.jsx'
 import ShopPage from './pages/shop/shop-page.component.jsx'
-import Account from './pages/account/account.component.jsx'
+import AccountPage from './pages/account/account.component.jsx'
+import CheckoutPage from './pages/checkout/checkout-page.component';
 
 /*Firebase */
 import { authChangeHandlingForwarder } from './firebase/authentication';
@@ -48,8 +50,9 @@ class App extends React.Component {
         <Header/>
         <Route exact path={'/'} component={HomePage}/>
         <Route exact path={'/shop'} component={ShopPage} />
-        <Route exact path={'/account'} render={()=> this.props.currentUser ? (<Redirect to={'/'}/>) : (<Account/>) } />
- </div>
+        <Route exact path={'/account'} render={()=> this.props.currentUser ? (<Redirect to={'/'}/>) : (<AccountPage/>) } />
+        <Route exact path={'/checkout'} component={CheckoutPage} />
+      </div>
     );
   }
 }

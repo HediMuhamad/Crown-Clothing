@@ -3,11 +3,11 @@ import SignIn from '../../components/sign-in/sign-in.component';
 import SignUp from '../../components/sign-up/sign-up.component';
 import './account.styles.scss'
 
-const Account = () =>( 
+const AccountPage = () =>( 
     <div className='account' >
         <SignIn/>
         <SignUp/>
     </div>
 )
 
-export default Account;
+export default AccountPage;

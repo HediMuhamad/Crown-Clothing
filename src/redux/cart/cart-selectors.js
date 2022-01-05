@@ -1,5 +1,7 @@
 import { createSelector } from 'reselect';
 
+import { findInStore } from '../../assets/shop.data';
+
 const selectCart = state => state.cart
 
 export const selectCartHidden = createSelector(
@@ -15,6 +17,13 @@ export const selectCartItems = createSelector(
 export const selectCartItemsCount = createSelector(
     [selectCartItems],
     (cartItems) => cartItems.reduce(
-        (accumalatedQuantity, cartItem) => accumalatedQuantity+cartItem.quantity
+        (accumalatedQuantity, cartItem) => accumalatedQuantity + cartItem.quantity
+        , 0)
+)
+
+export const selectCartItemsTotal = createSelector(
+    [selectCartItems],
+    (cartItems) => cartItems.reduce(
+        (accumalatedQuantity, cartItem) => accumalatedQuantity + cartItem.quantity * findInStore(cartItem.id).price
         , 0)
 )
