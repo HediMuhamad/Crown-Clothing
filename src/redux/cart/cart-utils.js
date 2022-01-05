@@ -1,4 +1,4 @@
-export const cartItemHanlder = (arr, id) => {
+export const addItemToCartHandler = (arr, id) => {
     const findResult = arr.findIndex((item)=>item.id===id);
     findResult===-1 ? arr.push({id: id, quantity: 1}) : arr[findResult].quantity=arr[findResult].quantity+1
     return [...arr];
