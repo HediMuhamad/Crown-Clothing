@@ -8,7 +8,7 @@ import './collection-item.styles.scss'
 const CollectionItem = (props) => (
   <div className='collection-item'>
     <div className='image' style={{backgroundImage:`url(${props.imageUrl})`}}>
-      <button className='add-to-cart-btn' onClick={()=>{props.addItemToCart(props.id)}}>ADD TO CART</button> {/* replace it with the custom button... */}
+      <button className='add-to-cart-btn' onClick={()=>{props.addItemToCart(props.id)}}>ADD TO CART</button>
     </div>
     <div className='collection-footer'>
       <span className='name'>{props.name}</span>

@@ -3,7 +3,6 @@ import { cartItemHanlder } from "./cart-utils";
 
 const INITIAL_STATE = {
     hidden: true,
-    cartItemsCount: 0,
     cartItems: []
 }
 
@@ -18,7 +17,6 @@ const cartReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 cartItems: cartItemHanlder(state.cartItems, action.payload),
-                cartItemsCount: state.cartItemsCount+1,
             }
         default:
             return state;
