@@ -13,6 +13,9 @@ import { ReactComponent as Logo } from '../../logo.svg'
 import CartIcon from '../cart-icon/cart-icon.component';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 
+/*Selectors */
+import { selectCartHidden } from '../../redux/cart/cart-selectors';
+import { selectCurrentUser } from '../../redux/user/user-selectors';
 
 const Header = ({currentUser, isCartDropdownHided}) => (
     <div className='header' >
@@ -31,8 +34,8 @@ const Header = ({currentUser, isCartDropdownHided}) => (
     )
 
 const mapStateToProps = state => ({
-    currentUser: state.user.currentUser,
-    isCartDropdownHided: state.cart.hidden,
+    currentUser: selectCurrentUser(state),
+    isCartDropdownHided: selectCartHidden(state),
 })
 
 export default connect(mapStateToProps)(Header);
