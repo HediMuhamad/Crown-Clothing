@@ -205,9 +205,9 @@ const SHOP_DATA = {
       },
       {
         id: 27,
-        name: 'White Hoodie',
+        name: 'Celine Suede Calfskin Quilted Bag',
         // imageUrl: 'https://i.ibb.co/KmSkMbH/striped-sweater.png',
-        imageUrl: "/images/shop-img/womens/white-hoodie.jpg",
+        imageUrl: "/images/shop-img/womens/celine-suede-calfskin-quiltedbag.jpg",
         price: 45
       },
       {
@@ -219,10 +219,24 @@ const SHOP_DATA = {
       },
       {
         id: 29,
-        name: 'White Sweater',
+        name: 'Chanel Chain Bag',
         // imageUrl: 'https://i.ibb.co/qBcrsJg/white-vest.png',
-        imageUrl: "/images/shop-img/womens/white-sweater.jpg",
-        price: 40
+        imageUrl: "/images/shop-img/womens/chanel-chainbag.jpg",
+        price: 90
+      },
+      {
+        id: 30,
+        name: 'Chanel Hand Bag',
+        // imageUrl: 'https://i.ibb.co/qBcrsJg/white-vest.png',
+        imageUrl: "/images/shop-img/womens/chanel-handbag.jpg",
+        price: 175
+      },
+      {
+        id: 31,
+        name: 'Michael-Kors Kors Bag',
+        // imageUrl: 'https://i.ibb.co/qBcrsJg/white-vest.png',
+        imageUrl: "/images/shop-img/womens/michael-kors-korsbag.jpg",
+        price: 100
       }
     ]
   },
@@ -231,42 +245,42 @@ const SHOP_DATA = {
     title: 'Mens',
     routeName: 'mens',
     items: [{
-        id: 30,
+        id: 32,
         name: 'Camo Down Vest',
         // imageUrl: 'https://i.ibb.co/xJS0T3Y/camo-vest.png',
         imageUrl: "/images/shop-img/mens/camo-vest.png",
         price: 325
       },
       {
-        id: 31,
+        id: 33,
         name: 'Floral T-shirt',
         // imageUrl: 'https://i.ibb.co/qMQ75QZ/floral-shirt.png',
         imageUrl: "/images/shop-img/mens/floral-shirt.png",
         price: 20
       },
       {
-        id: 32,
+        id: 34,
         name: 'Black & White Longsleeve',
         // imageUrl: 'https://i.ibb.co/55z32tw/long-sleeve.png',
         imageUrl: "/images/shop-img/mens/long-sleeve.png",
         price: 25
       },
       {
-        id: 33,
+        id: 35,
         name: 'Pink T-shirt',
         // imageUrl: 'https://i.ibb.co/RvwnBL8/pink-shirt.png',
         imageUrl: "/images/shop-img/mens/pink-shirt.png",
         price: 25
       },
       {
-        id: 34,
+        id: 36,
         name: 'Jean Long Sleeve',
         // imageUrl: 'https://i.ibb.co/VpW4x5t/roll-up-jean-shirt.png',
         imageUrl: "/images/shop-img/mens/roll-up-jean-shirt.png",
         price: 40
       },
       {
-        id: 35,
+        id: 37,
         name: 'Burgundy T-shirt',
         // imageUrl: 'https://i.ibb.co/mh3VM1f/polka-dot-shirt.png',
         imageUrl: "/images/shop-img/mens/polka-dot-shirt.png",
