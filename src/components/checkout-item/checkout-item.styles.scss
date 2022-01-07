@@ -25,6 +25,7 @@
     }
 
     .quantity{
+        width: 20.5%;
         display: flex;
         padding-left: 3px;
         box-sizing: border-box;
@@ -44,7 +45,6 @@
     }
 
     .image-container,
-    .quantity,
     .price {
         width: 21%;
     }

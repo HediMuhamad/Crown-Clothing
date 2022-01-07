@@ -1,0 +1,21 @@
+.my-stripe-button, .my-stripe-button span{
+    border: none !important;
+    border-radius: 0 !important;
+    font-family: 'Open Sans Condensed', sans-serif !important;
+    background-image: linear-gradient(#333, #333) !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    height: 100%;
+    width: 100%;
+    box-sizing: content-box;
+}
+
+.my-stripe-button{
+    padding: 0 !important;
+    position: relative;
+
+    span{
+        font-size: 1.4em !important;
+        padding: 0;
+    }
+}

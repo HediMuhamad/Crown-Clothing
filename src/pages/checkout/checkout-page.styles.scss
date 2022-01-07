@@ -33,9 +33,23 @@
         padding: 0 20px;
     }
 
-    .total {
-        margin-top: 30px;
-        margin-left: auto;
-        font-size: 36px;
+    .footer {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-top: 15px;
+        margin-bottom: 50px;
+        height: 40px;
+        position: relative;
+
+        .my-stripe-button:hover ~ .tooltip{
+            opacity: 1 !important;
+        }
+
+        .tooltip{
+            opacity: 0;
+            transition: 0.5s ease-in-out;
+        }
     }
+
 }

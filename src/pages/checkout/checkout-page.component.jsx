@@ -5,7 +5,9 @@ import './checkout-page.styles.scss'
 
 import { selectCartItems, selectCartItemsTotal } from '../../redux/cart/cart.selectors';
 
-import CheckoutItem from '../../components/checkout-item/checkout-item.component'
+import CheckoutItem from '../../components/checkout-item/checkout-item.component';
+import StripeButton from '../../components/stripe-button/stripe-button.component';
+import Tooltip from '../../components/tooltip/tooltip.component';
 
 const CheckoutPage = ({cartItems, totalPrice}) => (
     <div className='checkout-page'>
@@ -19,7 +21,12 @@ const CheckoutPage = ({cartItems, totalPrice}) => (
         <div className='cart-items-container'>
             {cartItems.map(cartItem => <CheckoutItem key={cartItem.id} {...cartItem} />)} {/*Why ==> {...cartItem} <== and not ==> cartItem = {cartItem} <== ? the first one send data indevedually which the item will be aware in every changes no like the second one which pass it as an array.*/}
         </div>
-        <div className='total'><div>Total: ${totalPrice}</div></div>
+        { cartItems.length!==0 ?
+            <div className='footer'>
+                <StripeButton className="my-stripe-button" total={totalPrice}/>
+                <Tooltip className="tooltip">Please click TEST MODE at the top right of the screen after clicking this button to get a card to test payment</Tooltip>
+            </div>
+        : null }
     </div>
 )
 const mapStateToProps = state => ({
