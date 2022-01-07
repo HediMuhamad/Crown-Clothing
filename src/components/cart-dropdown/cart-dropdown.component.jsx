@@ -6,6 +6,7 @@ import './cart-dropdown.styles.scss'
 
 import { CustomButton } from '../custom-button/custom-button.component'
 import { CartItem } from "../cart-item/cart-item.component";
+import { ReactComponent as CartIsEmpty } from '../../assets/icons/cart-is-empty.svg'
 
 import { selectCartItems } from "../../redux/cart/cart.selectors";
 import { toggleCartHiddenProperty } from "../../redux/cart/cart.action";
@@ -13,13 +14,14 @@ import { toggleCartHiddenProperty } from "../../redux/cart/cart.action";
 import { findInStore } from '../../redux/shop-data/shop-data.utils';;
 
 const CartDropdown = ({cartItems, history, dispatch}) => (
-    <div className="cart-dropdown">
-        <div className="cart-items">{
-            cartItems.map((item)=>{
-                const itemData = findInStore(item.id) 
-                return <CartItem key={item.id} name={itemData.name} price={itemData.price} imageUrl={itemData.imageUrl} quantity={item.quantity} />
-            })
-        }</div>
+    <div className="cart-dropdown">{
+            cartItems.length!==0 ? <div className="cart-items">{
+                cartItems.map((item)=>{
+                    const itemData = findInStore(item.id) 
+                    return <CartItem key={item.id} name={itemData.name} price={itemData.price} imageUrl={itemData.imageUrl} quantity={item.quantity} />
+                })
+            }</div> : <CartIsEmpty className="cart-is-empty"/> 
+        }
         <CustomButton onClick={()=>{
             history.push('/checkout')
             dispatch(toggleCartHiddenProperty());    

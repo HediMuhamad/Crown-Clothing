@@ -1,13 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import './checkout-page.styles.scss'
-
 import { selectCartItems, selectCartItemsTotal } from '../../redux/cart/cart.selectors';
 
 import CheckoutItem from '../../components/checkout-item/checkout-item.component';
 import StripeButton from '../../components/stripe-button/stripe-button.component';
 import Tooltip from '../../components/tooltip/tooltip.component';
+import { ReactComponent as CartIsEmpty } from '../../assets/icons/cart-is-empty.svg'
+
+import './checkout-page.styles.scss'
 
 const CheckoutPage = ({cartItems, totalPrice}) => (
     <div className='checkout-page'>
@@ -26,7 +27,7 @@ const CheckoutPage = ({cartItems, totalPrice}) => (
                 <StripeButton className="my-stripe-button" total={totalPrice}/>
                 <Tooltip className="tooltip">Please click TEST MODE at the top right of the screen after clicking this button to get a card to test payment</Tooltip>
             </div>
-        : null }
+        : <CartIsEmpty className='cart-is-empty'/> }
     </div>
 )
 const mapStateToProps = state => ({
