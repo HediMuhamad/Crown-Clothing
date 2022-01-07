@@ -8,7 +8,7 @@ const auth = getAuth(app);
 
 const googleOAuthProvider = new GoogleAuthProvider();
 
-//Global Hanlders
+//Global Handlers
 export const authChangeHandlingForwarder = (handler) => onAuthStateChanged(auth, handler)
 export const authOut = () => signOut(auth);
 
