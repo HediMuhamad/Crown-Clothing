@@ -9,18 +9,24 @@ import { CartItem } from "../cart-item/cart-item.component";
 import { ReactComponent as CartIsEmpty } from '../../assets/icons/cart-is-empty.svg'
 
 import { selectCartItems } from "../../redux/cart/cart.selectors";
+import { selectShopDataCollections } from "../../redux/shop-data/shop-data.selector"
+
 import { toggleCartHiddenProperty } from "../../redux/cart/cart.action";
 
 import { findInStore } from '../../redux/shop-data/shop-data.utils';
 
-const CartDropdown = ({cartItems, history, dispatch}) => (
+const CartDropdown = ({collections, cartItems, history, dispatch}) => (
     <div className="cart-dropdown">{
-        cartItems.length!==0 ? <div className="cart-items">{
+        !!collections ?
+        cartItems.length!==0 ?
+        <div className="cart-items">{
             cartItems.map(({id, quantity})=>{
                 const { name, price, imageUrl } = findInStore(id); 
                 return <CartItem key={id} name={name} price={price} imageUrl={imageUrl} quantity={quantity} />
             })
-            }</div> : <CartIsEmpty className="cart-is-empty"/> 
+        }</div>
+        : <CartIsEmpty className="cart-is-empty"/>
+        : null
         }
         <CustomButton onClick={()=>{
             history.push('/checkout')
@@ -30,7 +36,8 @@ const CartDropdown = ({cartItems, history, dispatch}) => (
 )
 
 const mapStateToProps = state => ({
-    cartItems: selectCartItems(state)
+    cartItems: selectCartItems(state),
+    collections: selectShopDataCollections(state)
 })
 
 
