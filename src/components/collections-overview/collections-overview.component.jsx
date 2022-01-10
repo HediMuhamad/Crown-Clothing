@@ -8,10 +8,9 @@ import CollectionPreview from "../collection-preview/collection-preview.componen
 
 const CollectionOverview = ({collections}) => (
     <div>{
-        Object.keys(collections).map(key=>{
-            const {id, ...others}= collections[key]
-            return <CollectionPreview key={id} viewLimit={4} {...others} />
-        })
+        Object.keys(collections).map(key=>
+            <CollectionPreview key={key} viewLimit={4} {...collections[key]} />
+        )
     }</div>
 )
 

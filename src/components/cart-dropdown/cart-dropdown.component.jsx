@@ -11,15 +11,15 @@ import { ReactComponent as CartIsEmpty } from '../../assets/icons/cart-is-empty.
 import { selectCartItems } from "../../redux/cart/cart.selectors";
 import { toggleCartHiddenProperty } from "../../redux/cart/cart.action";
 
-import { findInStore } from '../../redux/shop-data/shop-data.utils';;
+import { findInStore } from '../../redux/shop-data/shop-data.utils';
 
 const CartDropdown = ({cartItems, history, dispatch}) => (
     <div className="cart-dropdown">{
-            cartItems.length!==0 ? <div className="cart-items">{
-                cartItems.map((item)=>{
-                    const itemData = findInStore(item.id) 
-                    return <CartItem key={item.id} name={itemData.name} price={itemData.price} imageUrl={itemData.imageUrl} quantity={item.quantity} />
-                })
+        cartItems.length!==0 ? <div className="cart-items">{
+            cartItems.map(({id, quantity})=>{
+                const { name, price, imageUrl } = findInStore(id); 
+                return <CartItem key={id} name={name} price={price} imageUrl={imageUrl} quantity={quantity} />
+            })
             }</div> : <CartIsEmpty className="cart-is-empty"/> 
         }
         <CustomButton onClick={()=>{

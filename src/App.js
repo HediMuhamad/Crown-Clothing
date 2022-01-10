@@ -4,6 +4,7 @@ import './App.css';
 
 /*Dependencies */
 import { Redirect, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 /*Components */
 import Header from './components/header/header.component.jsx'
@@ -14,14 +15,16 @@ import CheckoutPage from './pages/checkout/checkout-page.component';
 
 /*Firebase */
 import { authChangeHandlingForwarder } from './firebase/authentication';
-import { createUserProfileDocument, onSnapshotHandler } from './firebase/firestore';
-import { connect } from 'react-redux';
+import { createUserProfileDocument, onSnapshotHandler, getCollectionRef } from './firebase/firestore';
 
 /*Reducers Actions */
 import { setCurrentUser } from './redux/user/user.action'
 
 /*Selectors */
 import { selectCurrentUser } from './redux/user/user.selectors'
+
+/*Actions */
+import { parseToShopData } from './redux/shop-data/shop-data.actions';
 
 class App extends React.Component {
 
@@ -32,16 +35,28 @@ class App extends React.Component {
     setCurrentUser(user)
     if(user){
       const userRef = await createUserProfileDocument(user);
-      onSnapshotHandler(userRef ,snapshot => setCurrentUser({id: userRef.id, ...snapshot.data()}))
+      return onSnapshotHandler(userRef ,snapshot => setCurrentUser({id: userRef.id, ...snapshot.data()}))
     }
+  }
+
+  unSubscribeFromServerData
+
+  retreiveDataFromServer = async () => {
+    return onSnapshotHandler(getCollectionRef('shopData'), async snapshot => {
+      const { parseToShopData } = this.props;
+      const docsArray = snapshot.docs.map(doc=>doc.data());
+      parseToShopData(docsArray)
+    })
   }
 
   componentDidMount(){
     this.unSubscribeFromAuth = authChangeHandlingForwarder(this.authChangeHandler); //to provide unSubscribeFromAuth
+    this.unSubscribeFromServerData = this.retreiveDataFromServer()
   }
 
   componentWillUnmount(){
     this.unSubscribeFromAuth(); //in order to prevent memory leaking.
+    this.unSubscribeFromServerData();
   }
 
   render(){
@@ -63,6 +78,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     setCurrentUser: user => dispatch(setCurrentUser(user)),
+    parseToShopData: docsArray => dispatch(parseToShopData(docsArray)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -13,9 +13,9 @@ const CollectionPreview = (props) => {
                 }
             }>{title}</h1>
             <div className="preview">{
-                items
+                Object.keys(items)
                 .filter((item, index)=>{return viewLimit>=0 ? index<viewLimit : index>-1})
-                .map(item=> <CollectionItem key={item.id} {...item} />)
+                .map(itemKey=> <CollectionItem key={itemKey} id={itemKey} {...items[itemKey]} />)
             }
             </div>
         </div>

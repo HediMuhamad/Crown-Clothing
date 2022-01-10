@@ -1,0 +1,3 @@
+export const shopDataActionTypes = {
+    PARSE_FIREBASE_DOCS_TO_SHOP_DATA: 'PARSE_FIREBASE_DOCS_TO_SHOP_DATA'
+}

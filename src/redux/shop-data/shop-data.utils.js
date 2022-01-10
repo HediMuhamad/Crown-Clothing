@@ -1,16 +1,27 @@
-import SHOP_DATA from "./shop-data.data"
+let SHOP_DATA = {}
 
-//It won't be use in reducer, just fo external use until replaced with a Database
+export const parseToShopData = (docsArray) => {
+    let shopData = {};
+    docsArray.forEach(({title, items}) => {
+        const asLowerCase = (title+'').toLowerCase();
+        
+        return shopData[asLowerCase] = {
+            title,
+            routeName:asLowerCase,
+            items
+        }
+    });
+    SHOP_DATA = shopData
+    return shopData
+}
+
+//It's just looks like a "util", but not :<
 export const findInStore = id => {
-    const getKeys = Object.keys(SHOP_DATA)
-    var currentPoint=0;
-    for (var i=0;i<getKeys.length;i++){
-        var length = SHOP_DATA[getKeys[i]].items.length;
-        currentPoint+=length
-        if(currentPoint>=id){
-            var mod = currentPoint - id;
-            var item = SHOP_DATA[getKeys[i]].items[length-1-mod]
-            return item
+    const getKeys = Object.keys(SHOP_DATA);
+    for(var i=0;i<getKeys.length;i++){
+        const searchResult = SHOP_DATA[getKeys[i]].items[id];
+        if(!!searchResult){
+            return searchResult;
         }
     }
 }
