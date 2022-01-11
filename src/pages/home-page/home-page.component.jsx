@@ -1,9 +1,9 @@
 import React from 'react';
 import './home-page.styles.scss';
-import DirectoryMenu from '../../components/directory-menu/directory-menu.component';
+import SectionMenu from '../../components/section-menu/section-menu.component';
 const HomePage = () => (
     <div className='home-page'>
-        <DirectoryMenu/>
+        <SectionMenu/>
     </div>
 )
 

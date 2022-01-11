@@ -3,14 +3,14 @@ import React from 'react';
 import { selectDirectorySections } from '../../redux/directory/directory.selector' 
 import { connect } from 'react-redux';
 
-import MenuItem from '../menu-item/menu-item.components';
+import SectionItem from '../section-item/section-item.components';
 
-import './directory-menu.component.scss';
+import './section-menu.component.scss';
 
-const DirectoryMenu = ({sections}) => (
+const SectionMenu = ({sections}) => (
     <div className='directory-menu'>{
         sections.map(({id, ...UsableDate})=>{
-            return <MenuItem key={id} {...UsableDate}/>
+            return <SectionItem key={id} {...UsableDate}/>
         })
     }</div>
 )
@@ -19,4 +19,4 @@ const mapStateToProps = (state) => ({
     sections: selectDirectorySections(state)
 })
 
-export default connect(mapStateToProps)(DirectoryMenu);
+export default connect(mapStateToProps)(SectionMenu);

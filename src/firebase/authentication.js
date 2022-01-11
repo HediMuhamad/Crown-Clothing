@@ -35,8 +35,9 @@ export const authUpWithEmailAndPassword = async (displayName ,email, password) =
 // Providers
 export const authInWithGoogle = async () => {
     try{
-        const credential = await signInWithPopup(auth, googleOAuthProvider);
-        return credential;
+        const userCredential = await signInWithPopup(auth, googleOAuthProvider);
+        await createUserProfileDocument(userCredential.user)
+        return userCredential;
     }catch(error){
         console.error(error);
     }

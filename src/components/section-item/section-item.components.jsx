@@ -1,8 +1,8 @@
 import React from 'react';
-import './menu-item.styles.scss'
+import './section-item.styles.scss'
 import {withRouter} from 'react-router-dom'
 
-const MenuItem = ({title, imageUrl, size, id, linkUrl, history, match}) =>(
+const SectionItem = ({title, imageUrl, size, id, linkUrl, history, match}) =>(
         <div className={`menu-item ${size}`}>
             <div className='menu-item-background'
             style={{backgroundImage: `url(${imageUrl})`}}
@@ -14,4 +14,4 @@ const MenuItem = ({title, imageUrl, size, id, linkUrl, history, match}) =>(
         </div>
     )
 
-export default withRouter(MenuItem);
+export default withRouter(SectionItem);

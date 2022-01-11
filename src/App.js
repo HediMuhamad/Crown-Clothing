@@ -18,16 +18,15 @@ import CheckoutPage from './pages/checkout/checkout-page.component';
 
 /*Firebase */
 import { authChangeHandlingForwarder } from './firebase/authentication';
-import { createUserProfileDocument, onSnapshotHandler, getCollectionRef } from './firebase/firestore';
+import { onSnapshotHandler, getCollectionRef, getDocumentRef } from './firebase/firestore'; // <==
 
 /*Reducers Actions */
 import { setCurrentUser } from './redux/user/user.action'
+import { parseToShopData } from './redux/shop-data/shop-data.actions';
 
 /*Selectors */
 import { selectCurrentUser } from './redux/user/user.selectors'
 
-/*Actions */
-import { parseToShopData } from './redux/shop-data/shop-data.actions';
 
 class App extends React.Component {
   state = {
@@ -40,23 +39,23 @@ class App extends React.Component {
     const { setCurrentUser } = this.props;
     setCurrentUser(user)
     if(user){
-      const userRef = await createUserProfileDocument(user);
+      const userRef = getDocumentRef(`users/${user.uid}`);
       return onSnapshotHandler(userRef ,snapshot => setCurrentUser({id: userRef.id, ...snapshot.data()}))
     }
   }
 
-  retreiveDataFromServer = async () => {
-    return onSnapshotHandler(getCollectionRef('shopData'), async snapshot => {
+  retreiveShopDataFromServer = () => (
+    onSnapshotHandler(getCollectionRef('shopData'), shopDataSnapshot => {
       const { parseToShopData } = this.props;
-      const docsArray = snapshot.docs.map(doc=>doc.data());
+      const docsArray = shopDataSnapshot.docs.map(doc=>doc.data());
       parseToShopData(docsArray);
       this.setState({isDataInLoading: false})
     })
-  }
+  )
 
   componentDidMount(){
     this.unSubscribeFromAuth = authChangeHandlingForwarder(this.authChangeHandler); //to provide unSubscribeFromAuth
-    this.retreiveDataFromServer()
+    this.retreiveShopDataFromServer()
   }
 
   componentWillUnmount(){
