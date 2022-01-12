@@ -1,12 +1,14 @@
 import generateUniqueID from 'uniqid';
 import { getFirestore, onSnapshot, writeBatch,
-         doc, getDoc, setDoc, collection } from 'firebase/firestore'
+         doc, getDoc, setDoc, collection, getDocs } from 'firebase/firestore'
 
 const db = getFirestore(); //initialization
     
 export const onSnapshotHandler = (ref, handler) => onSnapshot(ref, handler);
-export const getCollectionRef = path => collection(db, path)
-export const getDocumentRef = path => doc(db, path)
+export const getCollectionRef = path => collection(db, path);
+export const getDocumentRef = path => doc(db, path);
+export const getCollectionData = query => getDocs(query);
+export const getDocumentData = query => getDoc(query);
 
 export const createUserProfileDocument = async (userCreadntial, additionalData) => {
     

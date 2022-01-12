@@ -12,3 +12,8 @@ export const selectCollection = memoize(collectionUrlParam => createSelector( //
     [selectShopDataCollections],
     (collections) => collections[collectionUrlParam]
 ))
+
+export const selectIsCollectionsInFetching = createSelector(
+    [selectShopData],
+    (shopData) => shopData.isInFetchingData
+)

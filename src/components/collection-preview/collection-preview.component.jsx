@@ -8,7 +8,10 @@ const CollectionPreview = (props) => {
     return(
         <div className="collection-preview">
             <h1 className="title" onClick={()=>{
-                !match.params.collection ? history.push(`${match.url}/${title.toLowerCase()}`) : (()=>{})();
+                match.path = (match.path.charAt(match.path.length-1) === '/') ?
+                match.path.slice(0, match.path.length-1) : match.path
+                
+                !match.params.collection ? history.push(`${match.path}/${title.toLowerCase()}`) : (()=>{})();
                 window.scrollTo(0,0);
                 }
             }>{title}</h1>

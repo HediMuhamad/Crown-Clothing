@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { selectDirectorySections } from '../../redux/directory/directory.selector' 
+import { selectDirectorySections } from '../../redux/sections/sections.selector' 
 import { connect } from 'react-redux';
 
 import SectionItem from '../section-item/section-item.components';
