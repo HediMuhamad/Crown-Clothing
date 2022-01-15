@@ -22,7 +22,7 @@ import { onSnapshotHandler, getDocumentRef } from './firebase/firestore'; // <==
 
 /*Reducers Actions */
 import { setCurrentUser } from './redux/user/user.action';
-import { fetchDataFromFirestoreStartAsync } from "./redux/shop-data/shop-data.actions"
+import { fetchDataFromFirestoreStart } from "./redux/shop-data/shop-data.actions"
 
 /*Selectors */
 import { selectCurrentUser } from './redux/user/user.selectors'
@@ -45,8 +45,8 @@ class App extends React.Component {
 
   componentDidMount(){
     this.unSubscribeFromAuth = authChangeHandlingForwarder(this.authChangeHandler); //to provide unSubscribeFromAuth
-    const { startFetchShopDataAsync } = this.props;
-    startFetchShopDataAsync();
+    const { fetchDataFromFirestoreStart } = this.props;
+    fetchDataFromFirestoreStart();
   }
 
   componentWillUnmount(){
@@ -73,7 +73,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
     setCurrentUser: user => dispatch(setCurrentUser(user)),
-    startFetchShopDataAsync: () => dispatch(fetchDataFromFirestoreStartAsync())
+    fetchDataFromFirestoreStart: () => dispatch(fetchDataFromFirestoreStart())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
