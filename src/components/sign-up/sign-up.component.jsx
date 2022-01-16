@@ -1,8 +1,11 @@
 import React from 'react';
-import {CustomButton} from '../custom-button/custom-button.component';
-import FormInput from '../form-input/form-input.component';
+import { connect } from 'react-redux';
 import './sign-up.styles.scss'
-import { authUpWithEmailAndPassword } from '../../firebase/authentication';
+
+import { CustomButton } from '../custom-button/custom-button.component';
+import FormInput from '../form-input/form-input.component';
+
+import { signUpWithEmailStart } from '../../redux/user/user.action'
 
 class SignUp extends React.Component{
     
@@ -11,11 +14,12 @@ class SignUp extends React.Component{
         this.state={displayName: '', email: '', password: '', confirmPassword: '', passwordConfirmed: false};
     }
 
-    handleSubmit = async event => {
-        const {displayName, email, password, passwordConfirmed} = this.state;
+    handleSubmit = event => {
         event.preventDefault();
+        const { signUpWithEmail } = this.props; 
+        const {displayName, email, password, passwordConfirmed} = this.state;
         if(passwordConfirmed){
-            authUpWithEmailAndPassword(displayName, email, password);
+            signUpWithEmail({displayName, email, password});
         }
     }
 
@@ -25,6 +29,7 @@ class SignUp extends React.Component{
     }
 
     handlePasswordConfirmation = event => {
+        //Some Password checking should be here.
         this.textFieldChangeHandler(event);
         this.setState({passwordConfirmed:this.state.password===event.target.value});
     }
@@ -75,4 +80,8 @@ class SignUp extends React.Component{
 
 }
 
-export default SignUp; 
+const mapDispatchToProps = dispatch => ({
+    signUpWithEmail: (props) => dispatch(signUpWithEmailStart(props))
+})
+
+export default connect(null, mapDispatchToProps)(SignUp); 

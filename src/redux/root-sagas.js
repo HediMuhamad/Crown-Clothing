@@ -1,9 +1,11 @@
 import { all, call } from "redux-saga/effects";
 
-import { onFetchDataFromFirestore } from "./shop-data/shop-data.sagas"
+import shopDataSagas from "./shop-data/shop-data.sagas"
+import userSagas from "./user/user.sagas";
 
 export default function* shopDataSaga(){
     yield all([
-        call(onFetchDataFromFirestore),
+        call(shopDataSagas),
+        call(userSagas),
     ])
 }

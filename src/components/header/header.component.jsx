@@ -3,7 +3,6 @@ import React from 'react';
 /* */
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { authOut } from '../../firebase/authentication';
 
 /*Style and icons */
 import './header.styles.scss'
@@ -17,13 +16,16 @@ import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 import { selectCartHidden } from '../../redux/cart/cart.selectors';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 
-const Header = ({currentUser, isCartDropdownHided}) => (
+/*Actions */
+import { signOutStart } from '../../redux/user/user.action'
+
+const Header = ({currentUser, isCartDropdownHided, signOut}) => (
     <div className='header' >
         <div className='logo-container'><Link to='/' ><Logo/></Link></div>
         <div className='options'>
             <Link className='option' to='/shop'>SHOP</Link>
             <Link className='option' to='/contact'>CONTACT</Link>
-            <Link className='option' to={!currentUser?'/account':''} onClick={authOut}> {currentUser?'SIGN OUT':'SIGN IN'}</Link>
+            <Link className='option' to={!currentUser?'/account':''} onClick={signOut}> {currentUser?'SIGN OUT':'SIGN IN'}</Link>
             <CartIcon/>
             {
                 isCartDropdownHided ? null :
@@ -38,4 +40,8 @@ const mapStateToProps = state => ({
     isCartDropdownHided: selectCartHidden(state),
 })
 
-export default connect(mapStateToProps)(Header);
+const mapDispatchToProps = dispatch => ({
+    signOut: () => dispatch(signOutStart())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

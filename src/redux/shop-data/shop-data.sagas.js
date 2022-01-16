@@ -1,4 +1,4 @@
-import { takeLatest, put, call } from "redux-saga/effects"
+import { takeLatest, put, call, all } from "redux-saga/effects"
 import { shopDataActionTypes } from "./shop-data.enums"
 import { fetchDataFromFirestoreSuccess, fetchDataFromFirestoreFailure } from "./shop-data.actions"
 import { parseToShopData } from "./shop-data.utils"
@@ -20,3 +20,9 @@ export function* fetchDataFromFirestore(){
     }
 }
 
+
+export default function* shopDataSagas(){
+    yield all([
+        call(fetchDataFromFirestore),
+    ])
+}
