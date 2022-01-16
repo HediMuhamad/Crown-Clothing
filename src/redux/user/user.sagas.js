@@ -1,6 +1,7 @@
 import { takeLatest, call, put, all } from "redux-saga/effects"
 import { UserActionTypes } from "./user.enums"
 import { onSignInSuccess, onAuthFailed, onSignOutSuccess } from "./user.action"
+import { clearTheCart } from "../cart/cart.action"
 import { whenAuthChanged, authInWithGoogle, authInWithEmailAndPassword, authUpWithEmailAndPassword, authOut } from "../../firebase/authentication"
 import { getDocumentRef, getDocumentData, createUserProfileDocument } from "../../firebase/firestore"
 
@@ -87,6 +88,7 @@ export function* signOut(){
     try{
         yield call(authOut);
         yield put(onSignOutSuccess());
+        yield put(clearTheCart())
     }catch(error){
         console.error("ERROR #Gwfew2");
         yield call(authFailed, error)        
