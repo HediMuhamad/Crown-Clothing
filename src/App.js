@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import './App.css';
 
@@ -25,38 +25,33 @@ import { selectCurrentUser } from './redux/user/user.selectors'
 import { selectIsCollectionsInFetching } from './redux/shop-data/shop-data.selector'
 
 
+const App = ({ fetchDataFromFirestoreStart, getCurrentUserFromStartupStart, currentUser }) => {
 
-class App extends React.Component {
-
-  unSubscribeFromAuth = null;
-
-  componentDidMount(){
-    const { fetchDataFromFirestoreStart, getCurrentUserFromStartupStart } = this.props;
+  useEffect(()=>{
     getCurrentUserFromStartupStart();
     fetchDataFromFirestoreStart();
-  }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
 
-  render(){
-    return (
-      <div className="App">
-        <Header/>
-        <Route exact path={'/'} component={HomePage}/>
-        <Route path={'/shop'} component={ShopPage} />
-        <Route exact path={'/account'} render={() => this.props.currentUser ? (<Redirect to={'/'}/>) : (<AccountPage/>) } />
-        <Route exact path={'/checkout'} component={CheckoutPageContainer} />
-      </div>
-    );
-  }
+  return (
+    <div className="App">
+      <Header/>
+      <Route exact path={'/'} component={HomePage}/>
+      <Route path={'/shop'} component={ShopPage} />
+      <Route exact path={'/account'} render={() => currentUser ? (<Redirect to={'/'}/>) : (<AccountPage/>) } />
+      <Route exact path={'/checkout'} component={CheckoutPageContainer} />
+    </div>
+  );
 }
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
-  isCollectionsInFetching: selectIsCollectionsInFetching 
+  isCollectionsInFetching: selectIsCollectionsInFetching
 })
 
 const mapDispatchToProps = dispatch => ({
-    fetchDataFromFirestoreStart: () => dispatch(fetchDataFromFirestoreStart()),
-    getCurrentUserFromStartupStart: () => dispatch(getCurrentUserFromStartupStart())
+  fetchDataFromFirestoreStart: () => dispatch(fetchDataFromFirestoreStart()),
+  getCurrentUserFromStartupStart: () => dispatch(getCurrentUserFromStartupStart())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

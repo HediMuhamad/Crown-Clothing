@@ -1,6 +1,4 @@
 import React from 'react';
-
-/* */
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -25,7 +23,7 @@ const Header = ({currentUser, isCartDropdownHided, signOut}) => (
         <div className='options'>
             <Link className='option' to='/shop'>SHOP</Link>
             <Link className='option' to='/contact'>CONTACT</Link>
-            <Link className='option' to={!currentUser?'/account':''} onClick={signOut}> {currentUser?'SIGN OUT':'SIGN IN'}</Link>
+            <Link className='option' to={!currentUser?'/account':''} onClick={currentUser ? signOut : null}> {currentUser?'SIGN OUT':'SIGN IN'}</Link>
             <CartIcon/>
             {
                 isCartDropdownHided ? null :
