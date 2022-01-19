@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 import './cart-dropdown.styles.scss'
@@ -15,30 +15,31 @@ import { toggleCartHiddenProperty } from "../../redux/cart/cart.action";
 
 import { findInStore } from '../../redux/shop-data/shop-data.utils';
 
-const CartDropdown = ({collections, cartItems, history, dispatch}) => (
-    <div className="cart-dropdown">{
-        !!collections ?
-        cartItems.length!==0 ?
-        <div className="cart-items">{
-            cartItems.map(({id, quantity})=>{
-                const { name, price, imageUrl } = findInStore(id); 
-                return <CartItem key={id} name={name} price={price} imageUrl={imageUrl} quantity={quantity} />
-            })
-        }</div>
-        : <CartIsEmpty className="cart-is-empty"/>
-        : null
-        }
-        <CustomButton onClick={()=>{
-            history.push('/checkout')
-            dispatch(toggleCartHiddenProperty());    
-        }}>Check out</CustomButton>
-    </div>
-)
+const CartDropdown = ({history}) => {
+    
+    const dispatch = useDispatch();
+    const cartItems = useSelector(selectCartItems);
+    const collections = useSelector(selectShopDataCollections);
+    
+    return (
+        <div className="cart-dropdown">{
+            !!collections ?
+            cartItems.length!==0 ?
+            <div className="cart-items">{
+                cartItems.map(({id, quantity})=>{
+                    const { name, price, imageUrl } = findInStore(id); 
+                    return <CartItem key={id} name={name} price={price} imageUrl={imageUrl} quantity={quantity} />
+                })
+            }</div>
+            : <CartIsEmpty className="cart-is-empty"/>
+            : null
+            }
+            <CustomButton onClick={()=>{
+                history.push('/checkout')
+                dispatch(toggleCartHiddenProperty());    
+            }}>Check out</CustomButton>
+        </div>
+    )
+}
 
-const mapStateToProps = state => ({
-    cartItems: selectCartItems(state),
-    collections: selectShopDataCollections(state)
-})
-
-
-export default withRouter(connect(mapStateToProps)(CartDropdown))
+export default withRouter(CartDropdown)

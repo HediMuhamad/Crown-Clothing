@@ -2,7 +2,7 @@ import React from 'react';
 import './section-item.styles.scss'
 import {withRouter} from 'react-router-dom'
 
-const SectionItem = ({title, imageUrl, size, id, linkUrl, history, match}) =>(
+const SectionItem = ({title, imageUrl, size, linkUrl, history, match}) =>(
         <div className={`menu-item ${size}`}>
             <div className='menu-item-background'
             style={{backgroundImage: `url(${imageUrl})`}}

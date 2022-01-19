@@ -1,13 +1,8 @@
 import React, { useEffect } from 'react';
-
 import './App.css';
 
 /*Dependencies */
 import { Redirect, Route } from 'react-router-dom';
-import { createStructuredSelector } from 'reselect';
-
-/*Higher Order Components */
-import { connect } from 'react-redux';
 
 /*Components */
 import Header from './components/header/header.component.jsx'
@@ -16,22 +11,25 @@ import ShopPage from './pages/shop/shop-page.component.jsx'
 import AccountPage from './pages/account/account.component.jsx'
 import CheckoutPageContainer from './pages/checkout/checkout-page.container';
 
+import { useSelector, useDispatch } from 'react-redux';
+
 /*Reducers Actions */
 import { fetchDataFromFirestoreStart } from "./redux/shop-data/shop-data.actions"
 import { getCurrentUserFromStartupStart } from "./redux/user/user.action"
 
 /*Selectors */
 import { selectCurrentUser } from './redux/user/user.selectors'
-import { selectIsCollectionsInFetching } from './redux/shop-data/shop-data.selector'
 
 
-const App = ({ fetchDataFromFirestoreStart, getCurrentUserFromStartupStart, currentUser }) => {
+const App = () => {
 
+  const currentUser = useSelector(selectCurrentUser);
+  const dispatch = useDispatch()
+  
   useEffect(()=>{
-    getCurrentUserFromStartupStart();
-    fetchDataFromFirestoreStart();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[])
+    dispatch(fetchDataFromFirestoreStart());
+    dispatch(getCurrentUserFromStartupStart());
+  },[dispatch]);
 
   return (
     <div className="App">
@@ -44,14 +42,4 @@ const App = ({ fetchDataFromFirestoreStart, getCurrentUserFromStartupStart, curr
   );
 }
 
-const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser,
-  isCollectionsInFetching: selectIsCollectionsInFetching
-})
-
-const mapDispatchToProps = dispatch => ({
-  fetchDataFromFirestoreStart: () => dispatch(fetchDataFromFirestoreStart()),
-  getCurrentUserFromStartupStart: () => dispatch(getCurrentUserFromStartupStart())
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
