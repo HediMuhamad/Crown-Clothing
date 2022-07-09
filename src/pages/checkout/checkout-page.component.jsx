@@ -29,7 +29,7 @@ const CheckoutPage = () => {
             { cartItems.length!==0 ?
                 <div className='footer'>
                     <StripeButton className="my-stripe-button" total={totalPrice}/>
-                    <Tooltip className="tooltip">Please click TEST MODE at the top right of the screen after clicking this button to get a card to test payment</Tooltip>
+                    <Tooltip className="tooltip">Please click TEST MODE at the top right of the screen after clicking PAY NOW button to get a card to test payment.</Tooltip>
                 </div>
             : <CartIsEmpty className='cart-is-empty'/> }
         </div>

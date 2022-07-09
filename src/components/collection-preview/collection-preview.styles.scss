@@ -1,3 +1,22 @@
+@media screen and (max-width: 500px){
+  .preview {
+    grid-template-columns: repeat(auto-fill, 1fr) !important;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .preview {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media screen and (min-width: 1150px) {
+  .preview {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
+
+
 .collection-preview {
   display: flex;
   flex-direction: column;
@@ -8,11 +27,11 @@
     margin-bottom: 25px;
     cursor: pointer;
     user-select: none;
+    text-decoration: underline;
   }
 
   .preview {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
     gap: 2vw;
   }
 }

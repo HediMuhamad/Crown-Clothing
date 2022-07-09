@@ -1,12 +1,41 @@
+@media screen and (max-width: 1200px) {
+    .sign-in{
+        width: 100% !important;
+    }
+}
+
+@media screen and (max-width: 550px){       
+    .button-group{
+        flex-direction: column;
+
+        button:first-of-type{
+            margin-bottom: 5px;
+        }
+
+        *{
+            width: 100%;
+        }
+    }
+}
+
 .sign-in{
     width: 35%;
     display: flex;
     flex-direction: column;
-}
 
-.button-group{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    form > *{
+        margin-top:30px;
+    }
+
+    span{
+        font-size: 20px;
+    }
+
+    .button-group{
+        margin-top: 50px !important;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 }

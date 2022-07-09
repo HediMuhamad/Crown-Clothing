@@ -3,11 +3,11 @@ import { useDispatch } from 'react-redux';
 import './sign-up.styles.scss'
 
 import { CustomButton } from '../custom-button/custom-button.component';
-import FormInput from '../form-input/form-input.component';
+import TextField from '../text-field/text-field.component';
 
 import { signUpWithEmailStart } from '../../redux/user/user.action'
 
-const SignUp = ({ signUpWithEmail, }) => {
+const SignUp = () => {
     const dispatch = useDispatch();
 
     const [state, setState] = useState({displayName: '', email: '', password: '', confirmPassword: ''})
@@ -27,10 +27,10 @@ const SignUp = ({ signUpWithEmail, }) => {
 
     return(
         <div className='sign-up'>
-            <h2>I do not have account</h2>
+            <h1>I do not have account</h1>
             <span>Sign up with email and password</span>
             <form method='POST'>
-                <FormInput
+                <TextField
                     label='Display Name'
                     type="text"
                     name="displayName"
@@ -38,7 +38,7 @@ const SignUp = ({ signUpWithEmail, }) => {
                     value={displayName}
                     required
                 />
-                <FormInput
+                <TextField
                     label='Email'
                     type="email"
                     name="email"
@@ -46,7 +46,7 @@ const SignUp = ({ signUpWithEmail, }) => {
                     value={email}
                     required
                 />
-                <FormInput
+                <TextField
                     label='Password'
                     type="password"
                     name="password"
@@ -54,7 +54,7 @@ const SignUp = ({ signUpWithEmail, }) => {
                     value={password}
                     required
                 />
-                <FormInput
+                <TextField
                     label='Confirm Password'
                     type="password"
                     name="confirmPassword"

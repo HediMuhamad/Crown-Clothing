@@ -1,0 +1,22 @@
+@media screen and (max-width: 1200px) {
+    .account {
+        flex-direction: column !important;
+        align-items: center;
+
+        hr{
+            display: block !important;
+        }
+
+    }
+}
+
+.account{
+    display: flex;
+    justify-content: space-evenly;
+
+    hr{
+        display: none;
+        width: 80%;
+        margin: 70px 0px 40px 0px;
+    }
+}

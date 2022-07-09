@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import './sign-in.styles.scss'
 
 import { CustomButton } from '../custom-button/custom-button.component';
-import FormInput from '../form-input/form-input.component';
+import TextField from '../text-field/text-field.component';
 
 import { googleSignInStart, emailSignInStart } from "../../redux/user/user.action"
 
@@ -31,25 +31,25 @@ const SignIn = () => {
 
     return(
         <div className='sign-in'>
-            <h2>I already have an account</h2>
+            <h1>I already have an account</h1>
             <span>Sign in with your email and password</span>
             <form method='POST'>
-                <FormInput
+                <TextField
                     label='Email'
                     type="email"
                     name="email"
                     value={email}
                     onChange={textFieldChangeHandler}
                     required
-                ></FormInput>
-                <FormInput
+                ></TextField>
+                <TextField
                     label='Password'
                     type="password"
                     name="password"
                     value={password}
                     onChange={textFieldChangeHandler}
                     required
-                ></FormInput>
+                ></TextField>
                 <div className='button-group'>
                     <CustomButton
                         type='submit'

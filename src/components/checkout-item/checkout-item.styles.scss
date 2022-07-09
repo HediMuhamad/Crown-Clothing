@@ -1,3 +1,35 @@
+@media screen and (max-width:660px) {
+    .checkout-item{
+        flex-direction: column !important;
+        
+        .image-container{
+            width: 100% !important;
+            aspect-ratio: 3/4 !important;
+            .img{
+                width: 100% !important;
+                margin: auto;
+            }
+        }
+
+        .properties-container {
+            display: grid !important;
+            grid-template-areas: "n p"
+                                 "q r";
+        
+            & > *{
+                width: 100% !important;
+            }
+
+            .remove-button {
+                padding: 0 !important;
+            }
+
+        }
+
+        
+    }
+}
+
 .checkout-item {
     width: 100%;
     display: flex;
@@ -20,28 +52,37 @@
 
     }
 
-    .name{
-        width: 30%;
-    }
-
-    .quantity{
-        width: 20.5%;
+    .properties-container{
         display: flex;
-        padding-left: 3px;
-        box-sizing: border-box;
+        justify-content: space-between;
+        width: 100%;
 
-        .value{
-            padding: 0 5px;
+
+        .name{
+            width: 30%;
+            grid-area: n;
         }
+        
+        .quantity{
+            width: 20.5%;
+            display: flex;
+            padding-left: 3px;
+            box-sizing: border-box;
+            grid-area: q;
 
-        .arrow{
-            cursor: pointer;
+            .value{
+                padding: 0 5px;
+            }
+        
+            .arrow{
+                cursor: pointer;
+            }
+        
+            *{
+                user-select: none;
+            }
+        
         }
-
-        *{
-            user-select: none;
-        }
-
     }
 
     .image-container,
@@ -49,7 +90,12 @@
         width: 21%;
     }
 
+    .price{
+        grid-area: p;
+    }
+
     .remove-button {
+        grid-area: r;
         padding-left: 24px;
         cursor: pointer;
         user-select: none;

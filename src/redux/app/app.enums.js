@@ -1,0 +1,4 @@
+export const AppActionTypes = {
+	TOGGLE_MENU_LIST_SHOW_PROPERTY: 'TOGGLE_MENU_LIST_SHOW_PROPERTY',
+}
+

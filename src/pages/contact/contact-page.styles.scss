@@ -1,0 +1,190 @@
+@media screen and (max-width: 1400px) {
+    .contact-page {
+        .header{
+            margin-bottom: 0 !important;
+        }
+        .request-container{
+            gap: 20px;
+        }
+        .contact-content-container{
+            margin-top: 0 !important;
+        }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .contact-page {
+        .contacts-container{
+            flex-direction: column !important;
+            align-items: center;
+            gap: 100px;
+
+            .header{
+                margin-bottom: 0 !important;
+            }
+
+            .request-container{
+                gap: 20px !important;
+                padding: 0 !important; 
+            }
+            
+            .contact-content-container{
+                margin-top: 0 !important;
+            }
+
+            .request-container, .contact-content-container{
+                width: 650px !important;
+            }
+        }
+    }
+    
+}
+
+@media screen and (max-width: 770px) {
+
+    .contact-page {
+        .contacts-container{
+            .request-container, .contact-content-container{
+                width: 450px !important;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 570px) {
+
+    .contact-page {
+        .contacts-container{
+
+
+            .header{
+                margin-bottom: 20px !important;
+            }
+
+            .request-container {
+                gap: 30px !important;
+                & > .detail-container {
+                    gap: 0px !important;
+                    & > div {
+                        width: 100% !important;
+                        margin-bottom: 25px !important;
+                    } 
+                }
+                & > .content-container{
+                    margin-bottom: 10px !important;
+                }
+            }
+
+            .contact-content-container {
+                display: flex !important;
+                flex-direction: column;
+                margin-bottom: 50px;
+
+                & > tr {
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 30px;
+
+                    & > td{
+
+                        width: 100% !important;
+
+                        &:first-child::after{
+                            content: ':';
+                        }
+                    }
+
+                }
+            }
+
+            .request-container, .contact-content-container{
+                width: 250px !important;
+            }
+        }
+    }
+}
+
+.contact-page{    
+    width: 100%;
+
+    .header{
+        font-size: 30px;
+    }
+    
+    .contacts-container{
+        display: flex;
+        justify-content: space-between;
+        margin: 40px auto;
+        width: 95%;
+        height: 700px;
+
+        .request-container{
+            width: 60%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 45px;
+            padding: 0 5% 0 2.5% ;
+
+            .detail-container{
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 5%;
+
+                & > div {
+                    width: 47.5%;
+                    margin-bottom: 30px;
+                
+                    &:nth-of-type(2) > input{
+                        -moz-appearance: textfield;
+                        &::-webkit-outer-spin-button,
+                        &::-webkit-inner-spin-button {
+                            -webkit-appearance: none;
+                            margin: 0;
+                        }
+                    }
+
+                }
+
+            }
+
+            .content-container{
+                width: 100%;
+                height: 40%;
+            }
+
+            button{
+                font-size: large;
+            }
+
+        }
+
+        .contact-list-container{
+            .contact-content-container{
+                margin-top: 15px;
+                font-size: 20px;
+                font-weight: 500;
+                display: table;
+                border-spacing: 0 55px;
+
+                tr > td{
+                    vertical-align: middle;
+                    font-size: 22px;
+                    
+
+                    &:first-child {
+                        width: 20%;
+                    }
+                }
+
+            }
+        }
+
+
+    }
+
+
+}
+

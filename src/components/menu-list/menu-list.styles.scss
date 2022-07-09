@@ -1,0 +1,27 @@
+.menu-list {
+    width: 100%;
+    height: 70%;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    
+    background-color: white;
+    z-index: 5;
+
+    box-sizing: border-box;
+	padding: 60px;
+
+    .option:first-child{
+        margin-top: 30px;
+    }
+
+    .option{
+        text-decoration: none;
+        font-size: 2.5em;
+        color: #333;
+    }
+
+}

@@ -1,7 +1,22 @@
-.directory-menu {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 15px;
+@media screen and (max-width: 767px) {
+  .directory-menu {
+    flex-direction: column;
+    height: 1375px !important;
+    margin-bottom: 40px;
   }
+}
+
+@media screen and (min-width: 768px) {
+  .directory-menu{
+    flex-direction: row;
+  }
+}
+
+
+.directory-menu {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 15px;
+}

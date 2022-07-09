@@ -1,17 +1,20 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import CollectionItem from "../collection-item/collection-item.component";
 import './collection-preview.styles.scss'
 
 const CollectionPreview = (props) => {
-    const {title, items, viewLimit, history, match} = props;
+    const {title, items, viewLimit} = props;
+    const navigate = useNavigate();
+    const match = useLocation();
+    const params = useParams();
+
     return(
         <div className="collection-preview">
             <h1 className="title" onClick={()=>{
-                match.path = (match.path.charAt(match.path.length-1) === '/') ?
-                match.path.slice(0, match.path.length-1) : match.path
-                
-                !match.params.collection ? history.push(`${match.path}/${title.toLowerCase()}`) : (()=>{})();
+                match.pathname = (match.pathname.charAt(match.pathname.length-1) === '/') ?
+                match.pathname.slice(0, match.pathname.length-1) : match.pathname
+                !params.collection ? navigate(`${match.pathname}/${title.toLowerCase()}`) : (()=>{})();
                 window.scrollTo(0,0);
                 }
             }>{title}</h1>
@@ -25,4 +28,4 @@ const CollectionPreview = (props) => {
     );
 }
 
-export default withRouter(CollectionPreview);
+export default CollectionPreview;

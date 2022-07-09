@@ -1,8 +1,22 @@
+@media (pointer:coarse) {
+  .add-to-cart-btn {
+    opacity: 0.5 !important;
+  }
+  
+}
+
+@media (pointer:fine) {
+  .image:hover{
+    opacity: 0.9 !important;
+  }
+}
+
 .collection-item {
   display: flex;
   flex-direction: column;
   height: 450px;
   align-items: center;
+  margin-bottom: 30px;
 
   .image {
     width: 100%;
@@ -16,18 +30,15 @@
     justify-content: center;
     transition: opacity 0.25s ease-in-out;
 
-    &:hover{
-      opacity: 0.9;
-    }
-
     &:hover .add-to-cart-btn{
       opacity: 0.8;
       pointer-events: all;
     }
 
     .add-to-cart-btn{
-      top: 77.5%;
+      top: 75%;
       width: 80%;
+      height: 12.5%;  
       aspect-ratio: 5;
       position: absolute;
       outline: none;

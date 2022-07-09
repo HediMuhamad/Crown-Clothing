@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import './cart-dropdown.styles.scss'
 
@@ -15,12 +15,13 @@ import { toggleCartHiddenProperty } from "../../redux/cart/cart.action";
 
 import { findInStore } from '../../redux/shop-data/shop-data.utils';
 
-const CartDropdown = ({history}) => {
+const CartDropdown = () => {
     
     const dispatch = useDispatch();
     const cartItems = useSelector(selectCartItems);
     const collections = useSelector(selectShopDataCollections);
-    
+    const navigate = useNavigate();
+
     return (
         <div className="cart-dropdown">{
             !!collections ?
@@ -35,11 +36,11 @@ const CartDropdown = ({history}) => {
             : null
             }
             <CustomButton onClick={()=>{
-                history.push('/checkout')
+                navigate('/checkout')
                 dispatch(toggleCartHiddenProperty());    
             }}>Check out</CustomButton>
         </div>
     )
 }
 
-export default withRouter(CartDropdown)
+export default CartDropdown
