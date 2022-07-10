@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
 
@@ -16,6 +16,7 @@ import BurgerIcon from '../burger-icon/burger-icon.component'
 /*Selectors */
 import { selectCartHidden } from '../../redux/cart/cart.selectors';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { selectMenuListShowing } from "../../redux/app/app.selector"
 
 /*Actions */
 import { signOutStart } from '../../redux/user/user.action'
@@ -23,9 +24,12 @@ import { toggleMenuListShowPropery } from '../../redux/app/app.action'
 
 
 const Header = () => {
+    const path = useLocation().pathname;
     const dispatch = useDispatch();
+    
     const currentUser = useSelector(selectCurrentUser);
     const isCartDropdownHided = useSelector(selectCartHidden);
+    const menuListShowed = useSelector(selectMenuListShowing);
 
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
@@ -39,7 +43,7 @@ const Header = () => {
     
     return (
         <div className='header' >
-            <div className='logo-container' onClick={()=>{dispatch(toggleMenuListShowPropery())}}><Link to='/' ><Logo/></Link></div>
+            <div className='logo-container' onClick={()=>{if(path!=='/' && menuListShowed){dispatch(toggleMenuListShowPropery())}}}><Link to='/' ><Logo/></Link></div>
             {
             screenWidth >= 500 ?    
             <div className='options'>

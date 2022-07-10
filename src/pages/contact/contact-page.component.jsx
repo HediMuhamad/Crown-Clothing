@@ -4,15 +4,33 @@ import TextField from "../../components/text-field/text-field.component"
 import TextArea from '../../components/text-area/text-area.component';
 import { CustomButton } from '../../components/custom-button/custom-button.component'
 
+import { sendMessageToDB } from '../../firebase/firestore'
+
 import './contact-page.styles.scss'
 
 const ContactPage = () => { 
 
-    const [state, setState] = useState({name:'', email:'', phoneNumber:'', subject:'', message:''});
+    const [state, setState] = useState({name:'', email:'', phoneNumber:'', subject:'', message:'', isSent: false});
+    const [preState, setPreState] = useState({name:'', email:'', phoneNumber:'', subject:'', message:''});
+    const {name, email, phoneNumber, subject, message, isSent} = state;
 
     const inputChangeHandler = (event) => {
         const {name, value} = event.target;
-        setState({...state, [name]:value})
+        setState({...state, [name]:value, isSent:false})
+    }
+
+    const sendMessageHandler = async () => {
+
+        if((name===preState.name) && (email===preState.email) && (phoneNumber===preState.phoneNumber) && (subject===preState.subject) && (message===preState.message)){
+            setState({...state, isSent:true});
+            return;
+        }
+
+        const feedback = await sendMessageToDB(name, email, phoneNumber, subject, message);
+        if(feedback){
+            setState({...state, isSent:true});
+            setPreState({name, email, phoneNumber, subject, message});
+        }
     }
 
     return (
@@ -25,28 +43,28 @@ const ContactPage = () => {
                             label='Name'
                             name='name'
                             type='text'
-                            value={state.name}
+                            value={name}
                             onChange={inputChangeHandler}
                         />
                         <TextField
                             label='Phone Number'
                             name='phoneNumber'
                             type='number'
-                            value={state.phoneNumber}
+                            value={phoneNumber}
                             onChange={inputChangeHandler}
                         />
                         <TextField
                             label='Subject'
                             name='subject'
                             type='text'
-                            value={state.subject}
+                            value={subject}
                             onChange={inputChangeHandler}
                         />
                         <TextField
                             label='Email'
                             name='email'
                             type='email'
-                            value={state.email}
+                            value={email}
                             onChange={inputChangeHandler}
                         />
                     </div>
@@ -59,7 +77,7 @@ const ContactPage = () => {
                             onChange={inputChangeHandler}
                         />
                     </div>
-                    <CustomButton>Send</CustomButton>
+                    <CustomButton disabled={isSent} classlist={isSent ? 'disabled' : ''} onClick={sendMessageHandler} >{isSent ? 'Sent' : 'Send'}</CustomButton>
                 </div>
                 <div className='contact-list-container'>
                     <div className='header'>Reach Us</div>

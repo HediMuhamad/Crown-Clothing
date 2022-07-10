@@ -68,3 +68,28 @@ export const uploadCollectionDocs = async (collectionPath, collectionsObject) =>
         console.error("ERROR #ds2TW3 =>", error);
     }
 }
+
+
+export const sendMessageToDB = async (name, email, phoneNumber, subject, message) => {
+    const id = `${name}-${email}-${phoneNumber}-${subject}`;
+    const msgRef = doc(db, `messages/${id}`);
+    const msgSnapshot = await getDoc(msgRef);
+
+    
+    if(!msgSnapshot.exists()){
+        try{
+            await setDoc(msgRef, {
+                name,
+                email,
+                phone:phoneNumber,
+                subject,
+                message
+            })
+        }catch(error){
+            console.error("ERROR #eFaIb8 =>", error);
+        }
+    }
+
+    return msgRef
+    
+}
